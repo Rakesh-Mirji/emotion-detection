@@ -82,11 +82,11 @@ facemesh.load().then(function(_model){
 
 
 function setup() {
-  createCanvas(1280, 960);
+  createCanvas(360, 270);
 
   capture = createCapture(VIDEO); 
-  capture.elt.width = 1280;
-  capture.elt.height = 960;
+  // capture.elt.width = 1280/2;
+  // capture.elt.height = 960/2;
   console.log(capture.elt.style);
 
   // this is to make sure the capture is loaded before asking facemesh to take a look
@@ -185,7 +185,7 @@ function draw() {
   image(capture, 0, 0, capture.width, capture.height);
   console.log(capture.width,capture.height);
   noFill();
-  scale(2)
+  scale(1)
   stroke(0,150, 255, 100);
   drawFaces(myFaces); // draw my face skeleton
   pop();
