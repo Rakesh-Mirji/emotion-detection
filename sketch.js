@@ -82,7 +82,7 @@ facemesh.load().then(function(_model){
 
 
 function setup() {
-  createCanvas(400, 300);
+  createCanvas(600, 450);
 
   capture = createCapture(VIDEO); 
   // capture.elt.width = 600;
