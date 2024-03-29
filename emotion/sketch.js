@@ -7,7 +7,7 @@ let video;
 let canvas;
 
 function setup() {
-  canvas = createCanvas(480, 360);
+  canvas = createCanvas(480*2, 360*2);
   canvas.id("canvas");
 
   video = createCapture(VIDEO);// Create video
