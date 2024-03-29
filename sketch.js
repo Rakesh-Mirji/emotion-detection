@@ -85,8 +85,8 @@ function setup() {
   createCanvas(600, 450);
 
   capture = createCapture(VIDEO); 
-  // capture.elt.width = 600;
-  // capture.elt.height = 450;
+  capture.elt.width = 600;
+  capture.elt.height = 450;
   console.log(capture.elt.style);
 
   // this is to make sure the capture is loaded before asking facemesh to take a look
@@ -105,14 +105,6 @@ function drawFaces(faces,filled){
   for (var i = 0; i < faces.length; i++){
     const keypoints = faces[i].scaledMesh;
 
-    // for (var j = 0; j < keypoints.length; j++) {
-    //   const [x, y, z] = keypoints[j];
-    //   circle(x,y,5);
-    //   push();
-    //   strokeWeight(1);
-    //   text(j,x,y);
-    //   pop()
-    // }
 
     for (var j = 0; j < TRI.length; j+=3){
       var a = keypoints[TRI[j  ]];
