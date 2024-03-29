@@ -12,7 +12,7 @@ function setup() {
 
   video = createCapture(VIDEO);// Create video
   video.id("video");
-  video.size(width, height);
+  video.size(480*2, 360*2);
 
   const faceOptions = {
     withLandmarks: true,
