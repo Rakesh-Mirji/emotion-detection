@@ -54,7 +54,7 @@ function beat(emotion){
       break;
     case "surprised":
       min = 75;
-      max = 30;
+      max = 80;
       break;
     case "fear":
       min = 75;
@@ -71,7 +71,7 @@ function beat(emotion){
     heartRate=val
   }
   // console.log(val,heartRate);
-  return heartRate
+  return Math.round(heartRate)
 }
 
 function stressRange(emotion){
@@ -79,31 +79,31 @@ let elem = getRandomInt(1) ? 1 : -1
 
 switch (emotion){
   case "normal":
-    minStress = 70;
-    maxStress = 80;
+    minStress = 45;
+    maxStress = 70;
     break;
   case "happy":
-    minStress = 68;
+    minStress = 51;
     maxStress = 72;
     break;
   case "anger":
-    minStress = 75;
+    minStress = 70;
     maxStress = 90;
     break;
   case "sad":
-    minStress = 68;
+    minStress = 70;
     maxStress = 80;
     break;
   case "disgusted":
-    minStress = 63;
+    minStress = 65;
     maxStress = 70;
     break;
   case "surprised":
     minStress = 75;
-    maxStress = 30;
+    maxStress = 90;
     break;
   case "fear":
-    minStress = 75;
+    minStress = 80;
     maxStress = 90;
     break;
 }
@@ -114,7 +114,7 @@ if(stressVal+elem >= minStress && stressVal+elem <= maxStress){
   stressVal = (maxStress+minStress)/2
 }
 // console.log(val,heartRate);
-return stressVal
+return Math.round(stressVal)
 }
 
 function calulateBP(emotion){
