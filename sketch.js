@@ -86,7 +86,7 @@ function setup() {
 
   capture = createCapture(VIDEO); 
   capture.elt.width = 600;
-  capture.elt.height = 450;
+  capture.elt.height = 450; 
   console.log(capture.elt.style);
 
   // this is to make sure the capture is loaded before asking facemesh to take a look
