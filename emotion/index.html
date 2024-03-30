@@ -11,7 +11,7 @@
   <meta charset="utf-8" />
   <style>
     body {
-      background-color: #000;
+      background-color: #f7f6ff;
     }
 
     #canvas{
@@ -34,32 +34,53 @@
     .container{
       position: relative;
       top: 350px;
+    }
+    .display{
       background: #fff;
       display: flex;
       justify-content: space-around;
     }
     .text{
-      color: rgb(148 163 184);
+      color : #64748b;
       font-weight: bolder;
       font-size: 20px;
       font-family: sans-serif;
+    }
+    .value{
+      color: rgb(148 163 184);
+    }
+    .bar{
+      margin-top: 10px;
+      background-color: lightgray;
+      border-radius: 10px;
+    }
+    .progress{
+      background-color: blue;
+      border-radius: 10px;
+      color: transparent;
+      width: 0px;
     }
   </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="box">
-      <p class="text">PULSE</p>
-      <p id="pulse" class="text">- bpm</p>
+    <div class="display">
+      <div class="box">
+        <p class="text">PULSE</p>
+        <p id="pulse" class="text value">- bpm</p>
+      </div>
+      <div class="box">
+        <p class="text">STRESS</p>
+        <p  id="stress" class="text value">- /100</p>
+      </div>
+      <div class="box">
+        <p class="text">MOOD</p>
+        <p  id="mood" class="text value">----------</p>
+      </div>
     </div>
-    <div class="box">
-      <p class="text">STRESS</p>
-      <p  id="stress" class="text">- /100</p>
-    </div>
-    <div class="box">
-      <p class="text">MOOD</p>
-      <p  id="mood" class="text">----------</p>
+    <div class="bar">
+      <div class="progress">progress</div>
     </div>
   </div>
   <script src="sketch.js"></script>

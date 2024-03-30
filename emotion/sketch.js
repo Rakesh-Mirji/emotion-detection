@@ -12,12 +12,17 @@ let max = 89
 let minStress = 51
 let maxStress = 75
 
+let scanning = true
+let timer = 1
+let limit = 5000
+
 let val = (max+min)/2
 let stressVal = (maxStress+minStress)/2
 let heartRate = 0
 const mood = document.getElementById("mood");
 const pulse = document.getElementById("pulse");
 const stress = document.getElementById("stress");
+const progress = document.querySelector(".progress");
 
 function getRandomInt(max) {
     return Math.round(Math.random() * max);
@@ -117,11 +122,6 @@ function calulateBP(emotion){
     pulse.innerText = beat(emotion)+" bpm";
     stress.innerText = stressRange(emotion)+"/100";
 
-  }else{
-    pulse.innerText = 0+" bpm";
-    stress.innerText = 0+"/100";
-    heartRate = 0;
-    val = (max+min)/2
   }
 }
 
@@ -155,6 +155,31 @@ function gotFaces(error, result) {
     return;
   }
 
+  const myInterval = setInterval(()=>{
+    console.log(timer);
+    if(timer<=limit){
+      if(result.length>0){
+        progress.style.width=timer/(limit/100)+"%";
+        timer +=100
+      }
+      clearInterval(myInterval);
+    }else{
+      scanning=false
+      clearInterval(myInterval);
+    }
+  },100)
+  
+
+  if(scanning==false){
+    console.log(video.elt);
+    const mediaStream = video.elt.srcObject;
+    const tracks = mediaStream.getTracks();
+    tracks.forEach(track => {
+      track.stop()
+      mediaStream.removeTrack(track)
+    })
+    return
+  }
   detections = result;//Now all the data in this detections: 
   // console.log(detections);
 
@@ -162,6 +187,7 @@ function gotFaces(error, result) {
     pulse.innerText = "- bpm";
     stress.innerText ="- /100";
     mood.innerText = "----------";
+    timer = 1
   }
 
   clear();//Draw transparent background
