@@ -12,17 +12,25 @@ let max = 89
 let minStress = 51
 let maxStress = 75
 
+let minSpo = 88
+let maxSpo = 100
+
 let scanning = true
 let timer = 1
-let limit = 5000
+let limit = 10000
 
 let val = (max+min)/2
 let stressVal = (maxStress+minStress)/2
+let spoVal = (maxSpo+minSpo)/2
 let heartRate = 0
 const mood = document.getElementById("mood");
+const oxygen = document.getElementById("oxygen");
+const stressStatus = document.getElementById("stress_status");
+const oxygenStatus = document.getElementById("oxygen_status");
 const pulse = document.getElementById("pulse");
 const stress = document.getElementById("stress");
 const progress = document.querySelector(".progress");
+
 
 function getRandomInt(max) {
     return Math.round(Math.random() * max);
@@ -75,53 +83,110 @@ function beat(emotion){
 }
 
 function stressRange(emotion){
-let elem = getRandomInt(1) ? 1 : -1
+  let elem = getRandomInt(1) ? 1 : -1
 
-switch (emotion){
-  case "normal":
-    minStress = 45;
-    maxStress = 70;
-    break;
-  case "happy":
-    minStress = 51;
-    maxStress = 72;
-    break;
-  case "anger":
-    minStress = 70;
-    maxStress = 90;
-    break;
-  case "sad":
-    minStress = 70;
-    maxStress = 80;
-    break;
-  case "disgusted":
-    minStress = 65;
-    maxStress = 70;
-    break;
-  case "surprised":
-    minStress = 75;
-    maxStress = 90;
-    break;
-  case "fear":
-    minStress = 80;
-    maxStress = 90;
-    break;
+  switch (emotion){
+    case "normal":
+      minStress = 35;
+      maxStress = 50;
+      stressStatus.innerText ="LOW";  
+      break;
+    case "happy":
+      minStress = 30;
+      maxStress = 50;
+      stressStatus.innerText ="LOW";  
+      break;
+    case "anger":
+      minStress = 50;
+      maxStress = 70;
+      stressStatus.innerText ="MEDIUM";  
+      break;
+    case "sad":
+      minStress = 70;
+      maxStress = 80;
+      stressStatus.innerText ="HIGH";  
+      break;
+    case "disgusted":
+      minStress = 50;
+      maxStress = 70;
+      stressStatus.innerText ="MEDIUM";  
+      break;
+    case "surprised":
+      minStress = 75;
+      maxStress = 90;
+      stressStatus.innerText ="HIGH";  
+      break;
+    case "fear":
+      minStress = 80;
+      maxStress = 95;
+      stressStatus.innerText ="HIGH";  
+      break;
+  }
+
+  if(stressVal+elem >= minStress && stressVal+elem <= maxStress){
+    stressVal+=elem
+  }else{
+    stressVal = (maxStress+minStress)/2
+  }
+  // console.log(val,heartRate);
+  return Math.round(stressVal)
 }
 
-if(stressVal+elem >= minStress && stressVal+elem <= maxStress){
-  stressVal+=elem
-}else{
-  stressVal = (maxStress+minStress)/2
-}
-// console.log(val,heartRate);
-return Math.round(stressVal)
-}
+function spo2Range(emotion){
+  let elem = getRandomInt(1) ? 1 : -1
+  
+  switch (emotion){
+    case "normal":
+      minSpo = 85;
+      maxSpo = 100;
+      oxygenStatus.innerText ="NORMAL";  
+      break;
+    case "happy":
+      minSpo = 80;
+      maxSpo = 95;
+      oxygenStatus.innerText ="NORMAL";  
+      break;
+    case "anger":
+      minSpo = 97;
+      maxSpo = 102;
+      oxygenStatus.innerText ="SLIGHTLY HIGH";  
+      break;
+    case "sad":
+      minSpo = 80;
+      maxSpo = 90;
+      oxygenStatus.innerText ="SLIGHTLY LOW";  
+      break;
+    case "disgusted":
+      minSpo = 85;
+      maxSpo = 92;
+      oxygenStatus.innerText ="SLIGHTLY LOW";  
+      break;
+    case "surprised":
+      minSpo = 87;
+      maxSpo = 95;
+      oxygenStatus.innerText ="NORMAL";  
+      break;
+    case "fear":
+      minSpo = 90;
+      maxSpo = 102;
+      oxygenStatus.innerText ="SLIGHTLY HIGH";  
+      break;
+  }
+  
+  if(spoVal+elem >= minSpo && spoVal+elem <= maxSpo){
+    spoVal+=elem
+  }else{
+    spoVal = (maxSpo+minSpo)/2
+  }
+  // console.log(val,heartRate);
+  return Math.round(spoVal)
+  }
 
 function calulateBP(emotion){
   if( detections.length>0){
     pulse.innerText = beat(emotion)+" bpm";
-    stress.innerText = stressRange(emotion)+"/100";
-
+    stress.innerText = stressRange(emotion);
+    oxygen.innerText = spo2Range(emotion)+" %";
   }
 }
 
@@ -185,8 +250,11 @@ function gotFaces(error, result) {
 
   if (detections.length<=0){
     pulse.innerText = "- bpm";
-    stress.innerText ="- /100";
+    stress.innerText ="-";
+    stressStatus.innerText ="-";
+    oxygenStatus.innerText ="-";
     mood.innerText = "----------";
+    oxygen.innerText = "--%";
     timer = 1
   }
 

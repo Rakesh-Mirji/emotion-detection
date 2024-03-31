@@ -60,6 +60,10 @@
       color: transparent;
       width: 0px;
     }
+    .hidden{
+      visibility: hidden;
+      position: absolute;
+    }
   </style>
 </head>
 
@@ -72,11 +76,17 @@
       </div>
       <div class="box">
         <p class="text">STRESS</p>
-        <p  id="stress" class="text value">- /100</p>
+        <p  id="stress" class="text value">- </p>
+        <p  id="stress_status" class="text value">- </p>
       </div>
-      <div class="box">
+      <div class="box hidden">
         <p class="text">MOOD</p>
         <p  id="mood" class="text value">----------</p>
+      </div>
+      <div class="box">
+        <p class="text">SPO2</p>
+        <p  id="oxygen" class="text value">--%</p>
+        <p  id="oxygen_status" class="text value">- </p>
       </div>
     </div>
     <div class="bar">
