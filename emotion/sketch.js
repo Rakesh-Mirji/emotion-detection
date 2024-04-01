@@ -191,12 +191,12 @@ function calulateBP(emotion){
 }
 
 function setup() {
-  canvas = createCanvas(350, 262.5);
+  canvas = createCanvas(340, 255);
   canvas.id("canvas");
 
   video = createCapture(VIDEO);// Create video
   video.id("video");
-  video.size(350, 262.5);
+  video.size(340, 255);
 
   const faceOptions = {
     withLandmarks: true,
