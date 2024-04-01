@@ -137,13 +137,13 @@ function spo2Range(emotion){
   
   switch (emotion){
     case "normal":
-      minSpo = 85;
+      minSpo = 88;
       maxSpo = 100;
       oxygenStatus.innerText ="NORMAL";  
       break;
     case "happy":
-      minSpo = 80;
-      maxSpo = 95;
+      minSpo = 91;
+      maxSpo = 100;
       oxygenStatus.innerText ="NORMAL";  
       break;
     case "anger":
