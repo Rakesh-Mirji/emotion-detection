@@ -184,7 +184,7 @@ function spo2Range(emotion){
 
 function calulateBP(emotion){
   if( detections.length>0){
-    pulse.innerText = beat(emotion)+" bpm";
+    pulse.innerText = beat(emotion)+" pm";
     stress.innerText = stressRange(emotion);
     oxygen.innerText = spo2Range(emotion)+" %";
   }
@@ -249,7 +249,7 @@ function gotFaces(error, result) {
   // console.log(detections);
 
   if (detections.length<=0){
-    pulse.innerText = "- bpm";
+    pulse.innerText = "- pm";
     stress.innerText ="-";
     stressStatus.innerText ="-";
     oxygenStatus.innerText ="-";
