@@ -201,7 +201,7 @@ function calulateBP(emotion){
 }
 
 function setup() {
-  canvas = createCanvas(360, 270);
+  canvas = createCanvas(340, 255);
   canvas.id("canvas");
   
   video = createCapture(VIDEO);
