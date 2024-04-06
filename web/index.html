@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>face-api</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <meta charset="utf-8" />
+  <style>
+    body {
+      background-color: #f7f6ff;
+    }
+
+    #canvas{
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      margin: 5%;
+      margin-left: 10%;
+      z-index:1;
+    }
+
+    #video{
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      z-index:0;
+      margin: 5%;
+      margin-left: 10%;
+      border: 3px #fff solid;
+      border-radius: 10px;
+    }
+    .container{
+      position: relative;
+      top: 640px;
+    }
+    .display{
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+    }
+    .text{
+      color : #64748b;
+      font-weight: bolder;
+      font-size: 40px;
+      font-family: sans-serif;
+    }
+    .value{
+      color: rgb(148 163 184);
+    }
+    .bar{
+      margin-top: 10px;
+      background-color: lightgray;
+      border-radius: 10px;
+    }
+    .progress{
+      background-color: blue;
+      border-radius: 10px;
+      color: transparent;
+      width: 0px;
+    }
+    .hidden{
+      visibility: hidden;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="display">
+      <div class="box">
+        <p class="text">PULSE</p>
+        <p id="pulse" class="text value">- pm</p>
+      </div>
+      <div class="box">
+        <p class="text">STRESS</p>
+        <p  id="stress" class="text value">- </p>
+        <p  id="stress_status" class="text value">- </p>
+      </div>
+      <div class="box hidden">
+        <p class="text">MOOD</p>
+        <p  id="mood" class="text value">----------</p>
+      </div>
+      <div class="box">
+        <p class="text">SPO2</p>
+        <p  id="oxygen" class="text value">--%</p>
+        <p  id="oxygen_status" class="text value">- </p>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="progress">progress</div>
+    </div>
+  </div>
+  <script src="sketch.js"></script>
+</body>
+
+</html>
