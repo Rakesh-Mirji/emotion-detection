@@ -193,7 +193,7 @@ function spo2Range(emotion){
   }
 
 function calulateBP(emotion){
-  if( detections.length>0){
+  if(detections.length>0){
     pulse.innerText = beat(emotion)+" pm";
     stress.innerText = stressRange(emotion);
     oxygen.innerText = spo2Range(emotion)+" %";
@@ -201,12 +201,13 @@ function calulateBP(emotion){
 }
 
 function setup() {
-  canvas = createCanvas(360*2, 270*2);
+  canvas = createCanvas(360, 270);
   canvas.id("canvas");
 
   video = createCapture(VIDEO);// Create video
   video.id("video");
-  video.size(360*2, 270*2);
+  video.size(360, 270);
+
 
   const faceOptions = {
     withLandmarks: true,

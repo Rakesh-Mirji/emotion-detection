@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>face-api</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.js"></script>
@@ -11,18 +12,16 @@
   <meta charset="utf-8" />
   <style>
     body {
-      background-color: white;
+      background-color: #f7f6ff;
     }
 
     #canvas{
       position: absolute;
       top: 10px;
       left: 0px;
-      margin: 5%;
+      margin: 2%;
       margin-left: 10%;
       z-index:1;
-      height: 960px;
-      width:510px;
     }
 
     #video{
@@ -30,17 +29,13 @@
       top: 10px;
       left: 0px;
       z-index:0;
-      height: 960px;
-      width:510px;
-      aspect-ratio: 16 / 9;
-      margin: 5%;
-      margin-left: 10%;
+      margin: 2%;
       border: 3px #fff solid;
       border-radius: 10px;
     }
     .container{
       position: relative;
-      top: 640px;
+      top: 360px;
     }
     .display{
       background: #fff;
@@ -50,7 +45,7 @@
     .text{
       color : #64748b;
       font-weight: bolder;
-      font-size: 40px;
+      font-size: 20px;
       font-family: sans-serif;
     }
     .value{
