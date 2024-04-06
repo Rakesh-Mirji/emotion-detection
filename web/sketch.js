@@ -203,11 +203,11 @@ function calulateBP(emotion){
 function setup() {
   canvas = createCanvas(360, 270);
   canvas.id("canvas");
-
-  video = createCapture(360, 270);// Create video
+  
+  video = createCapture(VIDEO);
+  video.size(width, height);
   video.id("video");
-  video.size(360, 270);
-
+  
   // stressStatus.innerText = video.width;
   // oxygenStatus.innerText = canvas.width;
 
