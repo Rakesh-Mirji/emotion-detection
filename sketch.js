@@ -137,39 +137,32 @@ function spo2Range(emotion){
   
   switch (emotion){
     case "normal":
-      minSpo = 88;
+      minSpo = 90;
       maxSpo = 100;
-      oxygenStatus.innerText ="NORMAL";  
       break;
     case "happy":
       minSpo = 91;
       maxSpo = 100;
-      oxygenStatus.innerText ="NORMAL";  
       break;
     case "anger":
-      minSpo = 97;
-      maxSpo = 102;
-      oxygenStatus.innerText ="SLIGHTLY HIGH";  
+      minSpo = 95;
+      maxSpo = 100;
       break;
     case "sad":
-      minSpo = 80;
-      maxSpo = 90;
-      oxygenStatus.innerText ="SLIGHTLY LOW";  
+      minSpo = 85;
+      maxSpo = 95;
       break;
     case "disgusted":
-      minSpo = 85;
-      maxSpo = 92;
-      oxygenStatus.innerText ="SLIGHTLY LOW";  
+      minSpo = 89;
+      maxSpo = 93;
       break;
     case "surprised":
-      minSpo = 87;
-      maxSpo = 95;
-      oxygenStatus.innerText ="NORMAL";  
+      minSpo = 90;
+      maxSpo = 95;  
       break;
     case "fear":
       minSpo = 90;
-      maxSpo = 102;
-      oxygenStatus.innerText ="SLIGHTLY HIGH";  
+      maxSpo = 102;  
       break;
   }
   
