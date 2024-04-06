@@ -1,51 +1,99 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.10.2/addons/p5.sound.min.js"></script>
-    <script src="https://github.com/ml5js/ml5-library/blob/main/src/FaceApi/index.js"></script> -->
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.min.js"></script>
-    <script src="https://unpkg.com/ml5@latest/dist/ml5.min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <meta charset="utf-8" />
+<html>
 
-    <style>
-      .container{
-        position: absolute;
-        z-index: 100;
-        background-color: white;
-        opacity: 0.8;
-        width: 20vw;
-        top: 35vh;
-        left:0;
-      }
-      .text{
-        font-size: 30px;
-        font-weight: bold;
-        font-family: sans-serif;
-        color: rgb(148 163 184);
-        margin-right: 10px;
-      }
-      body{
-        display: flex ;
-        justify-content: center;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container" className="relative z-[100] bg-white/90 w-[15vw]">
-      <p class="text" className="text-3xl font-bold text-slate-500">PULSE</p>
-      <div style="display:flex; align-items: center;">
-        <p id="pulse" class='text'></p><span class="text">bpm</span>
+<head>
+  <meta charset="UTF-8">
+  <title>face-api</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/addons/p5.sound.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/ml5js/Intro-ML-Arts-IMA@ml5-build-10-7-19/ml5_build/ml5.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <meta charset="utf-8" />
+  <style>
+    body {
+      background-color: #f7f6ff;
+    }
+
+    #canvas{
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      margin: 2%;
+      z-index:1;
+    }
+
+    #video{
+      position: absolute;
+      top: 10px;
+      left: 0px;
+      z-index:0;
+      margin: 2%;
+      border: 3px #fff solid;
+      border-radius: 10px;
+    }
+    .container{
+      position: relative;
+      top: 350px;
+    }
+    .display{
+      background: #fff;
+      display: flex;
+      justify-content: space-around;
+    }
+    .text{
+      color : #64748b;
+      font-weight: bolder;
+      font-size: 20px;
+      font-family: sans-serif;
+    }
+    .value{
+      color: rgb(148 163 184);
+    }
+    .bar{
+      margin-top: 10px;
+      background-color: lightgray;
+      border-radius: 10px;
+    }
+    .progress{
+      background-color: blue;
+      border-radius: 10px;
+      color: transparent;
+      width: 0px;
+    }
+    .hidden{
+      visibility: hidden;
+      position: absolute;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="display">
+      <div class="box">
+        <p class="text">PULSE</p>
+        <p id="pulse" class="text value">- pm</p>
       </div>
+      <div class="box">
+        <p class="text">STRESS</p>
+        <p  id="stress" class="text value">- </p>
+        <p  id="stress_status" class="text value">- </p>
+      </div>
+      <div class="box hidden">
+        <p class="text">MOOD</p>
+        <p  id="mood" class="text value">----------</p>
+      </div>
+      <div class="box">
+        <p class="text">SPO2</p>
+        <p  id="oxygen" class="text value">--%</p>
+        <p  id="oxygen_status" class="text value">- </p>
+      </div>
+    </div>
+    <div class="bar">
+      <div class="progress">progress</div>
+    </div>
   </div>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core@1.7.4/dist/tf-core.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter@1.7.4/dist/tf-converter.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/facemesh@0.0.3/dist/facemesh.min.js"></script>    
-    <script src="landmarks.js"></script>
-    <script src="sketch.js"></script>
-  </body>
+  <script src="sketch.js"></script>
+</body>
+
 </html>
