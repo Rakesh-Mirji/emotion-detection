@@ -204,13 +204,13 @@ function setup() {
   canvas = createCanvas(360, 270);
   canvas.id("canvas");
 
-  video = createCapture(VIDEO);// Create video
+  video = createCapture(360, 270);// Create video
   video.id("video");
-  video.size(360, 270);
+  // video.size(360, 270);
 
   stressStatus.innerText = video.width;
   oxygenStatus.innerText = canvas.width;
-  
+
   const faceOptions = {
     withLandmarks: true,
     withExpressions: true,
