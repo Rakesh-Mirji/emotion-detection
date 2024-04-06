@@ -89,37 +89,30 @@ function stressRange(emotion){
     case "normal":
       minStress = 35;
       maxStress = 50;
-      stressStatus.innerText ="LOW";  
       break;
     case "happy":
       minStress = 30;
       maxStress = 50;
-      stressStatus.innerText ="LOW";  
       break;
     case "anger":
       minStress = 50;
       maxStress = 70;
-      stressStatus.innerText ="MEDIUM";  
       break;
     case "sad":
       minStress = 70;
       maxStress = 80;
-      stressStatus.innerText ="HIGH";  
       break;
     case "disgusted":
       minStress = 50;
       maxStress = 70;
-      stressStatus.innerText ="MEDIUM";  
       break;
     case "surprised":
-      minStress = 75;
-      maxStress = 90;
-      stressStatus.innerText ="HIGH";  
+      minStress = 65;
+      maxStress = 80;
       break;
     case "fear":
       minStress = 80;
       maxStress = 95;
-      stressStatus.innerText ="HIGH";  
       break;
   }
 
@@ -128,6 +121,18 @@ function stressRange(emotion){
   }else{
     stressVal = (maxStress+minStress)/2
   }
+
+  if (Math.round(stressVal)>=0 && Math.round(stressVal)<=50){
+    stressStatus.innerText ="NORMAL";  
+    stressStatus.style.color="#22c55e"
+  } else if (Math.round(stressVal)>50 && Math.round(stressVal)<=75){
+    stressStatus.innerText ="MEDIUM";    
+    stressStatus.style.color="#f59e0b"
+  }else{
+    stressStatus.innerText ="HIGH";
+    stressStatus.style.color="red"
+  }
+
   // console.log(val,heartRate);
   return Math.round(stressVal)
 }
@@ -139,37 +144,30 @@ function spo2Range(emotion){
     case "normal":
       minSpo = 88;
       maxSpo = 100;
-      oxygenStatus.innerText ="NORMAL";  
       break;
     case "happy":
       minSpo = 91;
       maxSpo = 100;
-      oxygenStatus.innerText ="NORMAL";  
       break;
     case "anger":
       minSpo = 97;
       maxSpo = 102;
-      oxygenStatus.innerText ="SLIGHTLY HIGH";  
       break;
     case "sad":
       minSpo = 80;
       maxSpo = 90;
-      oxygenStatus.innerText ="SLIGHTLY LOW";  
       break;
     case "disgusted":
       minSpo = 85;
       maxSpo = 92;
-      oxygenStatus.innerText ="SLIGHTLY LOW";  
       break;
     case "surprised":
       minSpo = 87;
-      maxSpo = 95;
-      oxygenStatus.innerText ="NORMAL";  
+      maxSpo = 95;  
       break;
     case "fear":
       minSpo = 90;
-      maxSpo = 102;
-      oxygenStatus.innerText ="SLIGHTLY HIGH";  
+      maxSpo = 102;  
       break;
   }
   
@@ -177,6 +175,18 @@ function spo2Range(emotion){
     spoVal+=elem
   }else{
     spoVal = (maxSpo+minSpo)/2
+  }
+
+  if(Math.round(spoVal)>=89 && Math.round(spoVal)<=100){
+    oxygenStatus.innerText ="NORMAL";  
+    oxygenStatus.style.color="#22c55e"
+  }
+  else if(Math.round(spoVal)<89){
+    oxygenStatus.innerText ="SLIGHTLY LOW";  
+    oxygenStatus.style.color="#f59e0b"
+  }else{
+    oxygenStatus.innerText ="SLIGHTLY HIGH";
+    oxygenStatus.style.color="red"
   }
   // console.log(val,heartRate);
   return Math.round(spoVal)
