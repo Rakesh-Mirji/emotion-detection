@@ -208,8 +208,8 @@ function setup() {
   video.id("video");
   video.size(360, 270);
 
-  stressStatus.innerText = video.width;
-  oxygenStatus.innerText = canvas.width;
+  // stressStatus.innerText = video.width;
+  // oxygenStatus.innerText = canvas.width;
 
   const faceOptions = {
     withLandmarks: true,
