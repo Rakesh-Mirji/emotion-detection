@@ -190,6 +190,8 @@ function setup() {
   video = createCapture(VIDEO);// Create video
   video.id("video");
   video.size(340, 255);
+  // video.elt.style.width="100%"
+  video.elt.style.objectFit="fill"
 
   const faceOptions = {
     withLandmarks: true,
