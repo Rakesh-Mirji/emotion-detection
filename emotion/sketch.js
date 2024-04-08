@@ -207,10 +207,13 @@ function setup() {
   video = createCapture(VIDEO);
   video.size(width, height);
   video.id("video");
+  
   video.elt.style.width="99vw"
   video.elt.style.height="60vh"
   video.elt.style.objectFit="fill"
-  canvas.width = "99vw"
+
+  canvas.elt.style.width="99vw"
+  canvas.elt.style.height="60vh"
 
   // stressStatus.innerText = video.width;
   // oxygenStatus.innerText = canvas.width;
@@ -224,6 +227,7 @@ function setup() {
 
   //Initialize the model
   faceapi = ml5.faceApi(video, faceOptions, faceReady);
+  scale(1)
 }
 
 function faceReady() {
@@ -238,7 +242,7 @@ function gotFaces(error, result) {
   }
 
   const myInterval = setInterval(()=>{
-    console.log(timer);
+    // console.log(timer);
     if(timer<=limit){
       if(result.length>0){
         progress.style.width=timer/(limit/100)+"%";
@@ -278,8 +282,7 @@ function gotFaces(error, result) {
   clear();//Draw transparent background
   // drawBoxs(detections);//Draw detection box:
   drawLandmarks(detections);//// Draw all the face points
-  drawExpressions(detections, 20, 250, 14);//Draw face expression
-
+  drawExpressions(detections);//Draw face expression
   faceapi.detect(gotFaces);// Call the function again here
 }
 
@@ -309,36 +312,16 @@ function drawLandmarks(detections){
 }
 
 
-function drawExpressions(detections, x, y, textYSpace){
+function drawExpressions(detections){
   if(detections.length > 0){//If at least 1 face is detected
     let {neutral, happy, angry, sad, disgusted, surprised, fearful} = detections[0].expressions;
-    textFont('Helvetica Neue');
-    textSize(14);
     noStroke();
     fill(44, 169, 225);
 
-    // text("neutral:       " + nf(neutral*100, 2, 2)+"%", x, y);
-    // text("happiness: " + nf(happy*100, 2, 2)+"%", x, y+textYSpace);
-    // text("anger:        " + nf(angry*100, 2, 2)+"%", x, y+textYSpace*2);
-    // text("sad:            "+ nf(sad*100, 2, 2)+"%", x, y+textYSpace*3);
-    // text("disgusted: " + nf(disgusted*100, 2, 2)+"%", x, y+textYSpace*4);
-    // text("surprised:  " + nf(surprised*100, 2, 2)+"%", x, y+textYSpace*5);
-    // text("fear:           " + nf(fearful*100, 2, 2)+"%", x, y+textYSpace*6);
 
     let emotion = moodDetect(neutral,happy,angry,sad,disgusted,surprised,fearful);
     calulateBP(emotion)
     mood.innerHTML = emotion.toUpperCase()
-    // text("mood:           " + emotion, x, y+textYSpace*7);
-
-
-  }else{//If no faces is detected
-    // text("neutral: ", x, y);
-    // text("happiness: ", x, y + textYSpace);
-    // text("anger: ", x, y + textYSpace*2);
-    // text("sad: ", x, y + textYSpace*3);
-    // text("disgusted: ", x, y + textYSpace*4);
-    // text("surprised: ", x, y + textYSpace*5);
-    // text("fear: ", x, y + textYSpace*6);
   }
 }
 
