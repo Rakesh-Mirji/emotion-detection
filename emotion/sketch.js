@@ -89,37 +89,30 @@ function stressRange(emotion){
     case "normal":
       minStress = 35;
       maxStress = 50;
-      stressStatus.innerText ="LOW";  
       break;
     case "happy":
       minStress = 30;
       maxStress = 50;
-      stressStatus.innerText ="LOW";  
       break;
     case "anger":
       minStress = 50;
       maxStress = 70;
-      stressStatus.innerText ="MEDIUM";  
       break;
     case "sad":
       minStress = 70;
       maxStress = 80;
-      stressStatus.innerText ="HIGH";  
       break;
     case "disgusted":
       minStress = 50;
       maxStress = 70;
-      stressStatus.innerText ="MEDIUM";  
       break;
     case "surprised":
-      minStress = 75;
-      maxStress = 90;
-      stressStatus.innerText ="HIGH";  
+      minStress = 65;
+      maxStress = 80;
       break;
     case "fear":
       minStress = 80;
       maxStress = 95;
-      stressStatus.innerText ="HIGH";  
       break;
   }
 
@@ -128,6 +121,18 @@ function stressRange(emotion){
   }else{
     stressVal = (maxStress+minStress)/2
   }
+
+  if (Math.round(stressVal)>=0 && Math.round(stressVal)<=50){
+    stressStatus.innerText ="NORMAL";  
+    stressStatus.style.color="#22c55e"
+  } else if (Math.round(stressVal)>50 && Math.round(stressVal)<=75){
+    stressStatus.innerText ="MEDIUM";    
+    stressStatus.style.color="#f59e0b"
+  }else{
+    stressStatus.innerText ="HIGH";
+    stressStatus.style.color="red"
+  }
+
   // console.log(val,heartRate);
   return Math.round(stressVal)
 }
@@ -171,12 +176,24 @@ function spo2Range(emotion){
   }else{
     spoVal = (maxSpo+minSpo)/2
   }
+
+  if(Math.round(spoVal)>=89 && Math.round(spoVal)<=100){
+    oxygenStatus.innerText ="NORMAL";  
+    oxygenStatus.style.color="#22c55e"
+  }
+  else if(Math.round(spoVal)<89){
+    oxygenStatus.innerText ="SLIGHTLY LOW";  
+    oxygenStatus.style.color="#f59e0b"
+  }else{
+    oxygenStatus.innerText ="SLIGHTLY HIGH";
+    oxygenStatus.style.color="red"
+  }
   // console.log(val,heartRate);
   return Math.round(spoVal)
   }
 
 function calulateBP(emotion){
-  if( detections.length>0){
+  if(detections.length>0){
     pulse.innerText = beat(emotion)+" pm";
     stress.innerText = stressRange(emotion);
     oxygen.innerText = spo2Range(emotion)+" %";
@@ -186,14 +203,17 @@ function calulateBP(emotion){
 function setup() {
   canvas = createCanvas(340, 255);
   canvas.id("canvas");
-
-  video = createCapture(VIDEO);// Create video
+  
+  video = createCapture(VIDEO);
+  video.size(width, height);
   video.id("video");
-  video.size(340, 255);
   video.elt.style.width="99vw"
   video.elt.style.height="50vh"
   video.elt.style.objectFit="fill"
   canvas.width = "99vw"
+
+  // stressStatus.innerText = video.width;
+  // oxygenStatus.innerText = canvas.width;
 
   const faceOptions = {
     withLandmarks: true,
