@@ -208,7 +208,7 @@ function setup() {
   video.size(width, height);
   video.id("video");
   video.elt.style.width="99vw"
-  video.elt.style.height="50vh"
+  video.elt.style.height="60vh"
   video.elt.style.objectFit="fill"
   canvas.width = "99vw"
 
